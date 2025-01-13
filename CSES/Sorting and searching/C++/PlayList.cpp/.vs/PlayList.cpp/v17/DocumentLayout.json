@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jawad\\OneDrive\\Desktop\\codeforces\\CSES\\Sorting and searching\\C\u002B\u002B\\PlayList.cpp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{93CD6A1E-82E7-4A53-AB12-042221456F3B}|PlayList.cpp\\PlayList.cpp.vcxproj|C:\\Users\\jawad\\OneDrive\\Desktop\\codeforces\\CSES\\Sorting and searching\\C\u002B\u002B\\PlayList.cpp\\PlayList.cpp\\PlayList.cpp.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{93CD6A1E-82E7-4A53-AB12-042221456F3B}|PlayList.cpp\\PlayList.cpp.vcxproj|solutionrelative:PlayList.cpp\\PlayList.cpp.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PlayList.cpp.cpp",
+              "DocumentMoniker": "C:\\Users\\jawad\\OneDrive\\Desktop\\codeforces\\CSES\\Sorting and searching\\C\u002B\u002B\\PlayList.cpp\\PlayList.cpp\\PlayList.cpp.cpp",
+              "RelativeDocumentMoniker": "PlayList.cpp\\PlayList.cpp.cpp",
+              "ToolTip": "C:\\Users\\jawad\\OneDrive\\Desktop\\codeforces\\CSES\\Sorting and searching\\C\u002B\u002B\\PlayList.cpp\\PlayList.cpp\\PlayList.cpp.cpp",
+              "RelativeToolTip": "PlayList.cpp\\PlayList.cpp.cpp",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAIwDwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-23T10:55:56.53Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
