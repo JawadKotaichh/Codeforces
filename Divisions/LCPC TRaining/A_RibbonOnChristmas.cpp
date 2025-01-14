@@ -29,17 +29,20 @@ using namespace std;
 int least(int n, vector<int>lst){
     int curr=0;
     int Sum=0;
-    map<int,int>D;
 
+    map<int,int>alreadySeen;
+    if(lst[0]>lst[1]){
+        Sum+=1;
+    }
     for(int i=1;i<n;i++){
-        if (lst[i]!=lst[i-1]){
-            Sum+=1;
-            D[lst[i]]=1;
+        if(alreadySeen.find(lst[i])!=alreadySeen.end()){
+            if (lst[i-1]!=lst[i]){
+                Sum+=1;
+            }
         }
-
-        if(D.find(lst[i])==D.end()){
+        else{
+            alreadySeen[lst[i]]=1;
             Sum+=1;
-            D[lst[i]]=1;
         }
         
     }
