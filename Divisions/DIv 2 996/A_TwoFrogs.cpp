@@ -5,7 +5,7 @@ using namespace std;
 
 
 /*
-    We are gievn an array a from 1 to n
+    We are given an array a from 1 to n
     Alice starts then Bob
     
 */
