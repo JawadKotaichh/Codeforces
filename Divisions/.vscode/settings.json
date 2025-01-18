@@ -61,6 +61,8 @@
         "deque": "cpp",
         "list": "cpp",
         "queue": "cpp",
-        "xhash": "cpp"
+        "xhash": "cpp",
+        "complex": "cpp",
+        "valarray": "cpp"
     }
 }
