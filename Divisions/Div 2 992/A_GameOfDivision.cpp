@@ -5,29 +5,52 @@ using namespace std;
 
 
 /*
-    We are given an array a 
-    We can change a[i] to any number between 0 and a[i]
-    if a[i]<0 replace a[i] with any integer from a[i] to 0
-    
-    r is the min possible product of the array
-    our goal is to have the minimum number of operations to makle the product equal to r
+    We are given an array a and an integer k
+    There is two players playing a game
+    First player choose an index i and the second another index j such as j!=i
+    The first player wins if abs(a[i]-a[j]) is not divisble by k
+    Our goal is to determine if it is possible for the first player to win.
 
-    if 0 is in the array the answer is 0
-    else if there is an odd number of negative number, we dont need any operation
-    else make one of them 0 the answer 1 
+    So we need to check if there is an element of a at index i
+    such that if we pick j!=i for all other indexes,
+    abs(a[i]-a[j]) not divisible by k
+
+    
 */
-void minOps(int n,vector<int>a){
-    if(a[0]==0) cout<<0<<endl;
+void WhoWins(int n,int k,vector<int>a){
+    int count=0;
+    int indx;
+    bool Wins=false;
+
+    for(int i=0;i<n;i++){
+        //cout<<"a[i]= "<<a[i]<<" INDEX= "<<i<<endl;
+        for(int j=0;j<n;j++){
+            if (j!=i){
+                //cout<<"diff= "<<abs(a[i]-a[j])<<endl;
+                if(abs(a[i]-a[j])%k!=0){
+                    count+=1;
+                }
+                else{
+                    break;
+                }
+            }
+            
+        }
+        // cout<<"COUNT= "<<count<<endl;
+        if(count == n-1){
+            Wins=true;
+            indx=i+1;
+            break;
+        }
+        count=0;
+    }
+
+    if(Wins){
+        cout<<"YES"<<endl;
+        cout<<indx<<endl;
+    }
     else{
-        int numberOfNeg=0;
-        forn(n,i){
-            if(a[i]<0) numberOfNeg+=1; 
-        }
-        if (numberOfNeg%2!=0) cout<<0<<endl;
-        else{
-            cout<<1<<endl;
-            cout<<1<<" "<<0<<endl;
-        }
+        cout<<"NO"<<endl;
     }
 }
 
@@ -39,11 +62,10 @@ int32_t main(){
     int t;
     cin >> t;
     while(t--){
-        int n;cin>>n;
+        int n, k;cin>>n>>k;
         vector<int> a(n);
         forn(n,i) cin>>a[i];
-        sort(a.begin(),a.end());
-        minOps(n,a);
+        WhoWins(n,k,a);
     }
     return 0;
 }
