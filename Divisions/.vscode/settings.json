@@ -63,6 +63,7 @@
         "queue": "cpp",
         "xhash": "cpp",
         "complex": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "bitset": "cpp"
     }
 }
