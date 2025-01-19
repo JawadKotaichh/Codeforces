@@ -13,21 +13,27 @@ using namespace std;
 
 
 void Possible(int n, vector<int>& a) {
+    if (a[0]==a[1]){
+        a[0]=0;
+        a[1]=0;
+    }
+    bool isPossible=true;
+
+
     for(int i=0;i<n-1;i++){
-        if (a[i+1]>a[i]){
-            int mini=min(a[i],a[i+1]);
-            a[i]-=mini;
-            a[i+1]-=mini;
-        }
+        int mini=min(a[i],a[i+1]);
+        a[i]-=mini;
+        a[i+1]-=mini;
     }
 
-    bool isPossible=true;
     for(int j=0;j<n-1;j++){
         if (a[j]>a[j+1]) {
             isPossible=false;
             break;
         }
     }
+    if (a[n-1]<a[n-2]) isPossible=false;
+
     if (isPossible) cout<<"YES"<<endl;
     else cout<<"NO"<<endl;
 }
