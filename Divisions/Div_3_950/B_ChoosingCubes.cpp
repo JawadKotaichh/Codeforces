@@ -1,4 +1,6 @@
 #include <bits/stdc++.h>
+# define forn(n,i) for(int i=0;i<n;i++)
+# define int long long
 using namespace std;
 
 /*
@@ -21,16 +23,58 @@ using namespace std;
 
 */
 
+void ChoosingCubes(int n,int f,int k,vector<int> a){
+    int favorite =a[f-1];
+    int count=0;
+    int firstCount=0;
+    bool remove =false;
+    sort(a.rbegin(),a.rend());
+    //cout<<"Sorted Array: ";
+    //forn(n,i) cout<<a[i]<<" ";
+    //cout<<endl;
+    
 
-int main() {
+    for(int x=0;x<n;x++){
+        if(a[x]==favorite) count+=1;
+    }
+    firstCount=count;
+    // cout<<"INITIAL COUNT= "<<count<<endl;
+
+    for(int j=0;j<k;j++){
+        if(a[j]==favorite){
+            //cout<<"a[j]= "<<a[j]<<endl;
+            if (count==0){
+                remove=true;
+                break;
+            }
+            else{
+                count-=1;
+                if (count ==0) break;
+            } 
+            //cout<<"Remainig Count = "<<count<<endl;
+        }
+    }
+
+    if(count==firstCount){
+        cout<<"NO"<<endl;
+    }
+    else if (count==0){
+        cout<<"YES"<<endl;
+    }
+    else cout<<"MAYBE"<<endl;
+}
+
+
+int32_t main() {
     int t; 
     cin >> t;
 
     while (t--) {
         int n,f,k;
         cin >> n >> f >>k;
-        
-        
+        vector<int> a(n);
+        forn(n,i) cin>>a[i];
+        ChoosingCubes(n,f,k,a);
     }
 
     return 0;
