@@ -64,6 +64,11 @@
         "xhash": "cpp",
         "complex": "cpp",
         "valarray": "cpp",
-        "bitset": "cpp"
+        "bitset": "cpp",
+        "random": "cpp",
+        "array": "cpp",
+        "chrono": "cpp",
+        "forward_list": "cpp",
+        "regex": "cpp"
     }
 }
