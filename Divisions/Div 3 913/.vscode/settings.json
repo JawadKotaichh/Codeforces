@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "xstring": "cpp",
+        "algorithm": "cpp",
+        "vector": "cpp",
+        "xtree": "cpp",
+        "cstdlib": "cpp",
+        "utility": "cpp",
+        "chrono": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp",
+        "memory": "cpp",
+        "xiosbase": "cpp"
+    }
+}

@@ -8,7 +8,7 @@ using namespace std;
     have the letter b: means that we should remove the rightmost lowercase
     have the letter B: means that we should remove the rightmost uppercase
     If there is not we don't change anything.
-
+    
 
     
 */
