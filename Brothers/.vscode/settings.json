@@ -9,6 +9,14 @@
         "deque": "cpp",
         "format": "cpp",
         "list": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "xiosbase": "cpp",
+        "ios": "cpp",
+        "complex": "cpp",
+        "cstdlib": "cpp",
+        "valarray": "cpp",
+        "cmath": "cpp",
+        "utility": "cpp",
+        "ostream": "cpp"
     }
 }

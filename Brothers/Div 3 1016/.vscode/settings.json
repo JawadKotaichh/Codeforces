@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "utility": "cpp",
+        "cmath": "cpp",
+        "iostream": "cpp",
+        "tuple": "cpp",
+        "chrono": "cpp",
+        "complex": "cpp",
+        "valarray": "cpp"
+    }
+}

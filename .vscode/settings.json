@@ -4,7 +4,8 @@
     "iostream": "cpp",
     "algorithm": "cpp",
     "cmath": "cpp",
-    "random": "cpp"
+    "random": "cpp",
+    "*.tcc": "cpp"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
