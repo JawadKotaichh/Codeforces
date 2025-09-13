@@ -1,0 +1,281 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+static vector<long long> P;
+
+void build_powers()
+{
+    if (!P.empty())
+        return;
+    P.push_back(1);
+    while (P.back() <= 1000000000LL / 3)
+        P.push_back(P.back() * 3);
+}
+long long getCost(int x)
+{
+    if (x == 0)
+        return 3;
+    long long px = P[x];
+    return 3 * px + 1LL * x * (px / 3);
+}
+
+pair<long long, vector<pair<long long, long long>>> get_min_number_of_deals(long long n)
+{
+    build_powers();
+    long long min_cost = 0;
+    long long curr_nb_power = 0;
+    long long required_nb_of_deals = 0;
+    vector<pair<long long, long long>> powers_required;
+    for (int i = (int)P.size() - 1; i >= 0; i--)
+    {
+        // cout << "Power: " << i << endl;
+        curr_nb_power = n / P[i];
+        // cout << "curr nb power " << curr_nb_power << endl;
+        if (curr_nb_power != 0)
+        {
+            // cout << "Current cost: " << curr_nb_power * curr_cost << endl;
+            min_cost += curr_nb_power * getCost(i);
+            n -= curr_nb_power * P[i];
+            required_nb_of_deals += curr_nb_power;
+            powers_required.push_back({curr_nb_power, i});
+            // cout << "new n: " << n << endl;
+        }
+    }
+    return {min_cost, powers_required};
+}
+
+long long get_min_cost(long long n, long long k)
+{
+
+    // {{count: 2, power: 2},{count: 1, power: 1},{count: 1, power: 0}}=>n=18+3+1= 22
+    // remaining:5
+    pair<long long, vector<pair<long long, long long>>> answer = get_min_number_of_deals(n);
+    long long min_cost = answer.first;
+    vector<pair<long long, long long>> powers_required = answer.second;
+    long long required_nb_of_deals = powers_required.size();
+    long long remaining_deals = k - required_nb_of_deals;
+    if (remaining_deals < 0)
+    {
+        return -1;
+    }
+    else
+    {
+        for (int i = 0; i < powers_required.size(); i++)
+        {
+            long long current_count = powers_required[i].first;
+            long long current_power = powers_required[i].second;
+            if (current_count >= remaining_deals)
+            {
+                remaining_deals -= current_count;
+                min_cost -= current_count * getCost(current_power);
+                min_cost += current_count * getCost(current_power - 1);
+            }
+            else
+            {
+                min_cost -= remaining_deals * getCost(current_power);
+                min_cost += remaining_deals * getCost(current_power - 1);
+                break;
+            }
+        }
+
+        return min_cost;
+    }
+}
+
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        long long n, k;
+        cin >> n >> k;
+        cout << get_min_cost(n, k) << endl;
+    }
+    return 0;
+}
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+static vector<long long> P;
+
+void build_powers()
+{
+    if (!P.empty())
+        return;
+    P.push_back(1);
+    while (P.back() <= 1000000000LL / 3)
+        P.push_back(P.back() * 3);
+}
+long long getCost(int x)
+{
+    if (x == 0)
+        return 3;
+    long long px = P[x];
+    return 3 * px + 1LL * x * (px / 3);
+}
+
+pair<long long, vector<pair<long long, long long>>> get_min_number_of_deals(long long n)
+{
+    build_powers();
+    long long min_cost = 0;
+    long long curr_nb_power = 0;
+    long long required_nb_of_deals = 0;
+    vector<pair<long long, long long>> powers_required;
+
+    cout << "[GMND] START n=" << n << "\n";
+    for (int i = (int)P.size() - 1; i >= 0; i--)
+    {
+        curr_nb_power = n / P[i];
+        if (curr_nb_power != 0)
+        {
+            long long before_cost = min_cost;
+            long long take_cost = curr_nb_power * getCost(i);
+            cout << "[GMND] use power i=" << i
+                 << " (P[i]=" << P[i] << "), take=" << curr_nb_power
+                 << ", add_cost=" << take_cost
+                 << ", before_cost=" << before_cost << "\n";
+            min_cost += take_cost;
+            n -= curr_nb_power * P[i];
+            required_nb_of_deals += curr_nb_power;
+
+            powers_required.push_back({curr_nb_power, i}); // <- missing ';' fixed
+
+            cout << "[GMND] after: n=" << n
+                 << ", total_cost=" << min_cost
+                 << ", deals=" << required_nb_of_deals << "\n";
+        }
+    }
+
+    cout << "[GMND] RESULT: min_cost=" << min_cost
+         << ", required_nb_of_deals=" << required_nb_of_deals
+         << ", powers_required={";
+    for (size_t j = 0; j < powers_required.size(); ++j)
+    {
+        cout << "(" << powers_required[j].first << "x, p=" << powers_required[j].second << ")";
+        if (j + 1 < powers_required.size())
+            cout << ", ";
+    }
+    cout << "}\n";
+    cout << endl;
+    return {min_cost, powers_required};
+}
+
+long long get_min_cost(long long n, long long k)
+{
+
+    // {{count: 2, power: 2},{count: 1, power: 1},{count: 1, power: 0}}=>n=18+3+1= 22
+    // remaining:5
+    pair<long long, vector<pair<long long, long long>>> answer = get_min_number_of_deals(n);
+    long long min_cost = answer.first;
+    vector<pair<long long, long long>> powers_required = answer.second;
+    long long required_nb_of_deals = 0;
+    for (int j = 0; j < powers_required.size(); j++)
+    {
+        required_nb_of_deals += powers_required[j].first;
+    }
+    long long remaining_deals = k - required_nb_of_deals;
+
+    cout << "[GMC] START n=" << n << ", k=" << k << "\n";
+    cout << "[GMC] base_cost=" << min_cost
+         << ", required_nb_of_deals=" << required_nb_of_deals
+         << ", remaining_deals=" << remaining_deals << "\n";
+
+    cout << "[GMC] powers_required from GMND: {";
+    for (size_t j = 0; j < powers_required.size(); ++j)
+    {
+        cout << "(" << powers_required[j].first << "x, p=" << powers_required[j].second << ")";
+        if (j + 1 < powers_required.size())
+            cout << ", ";
+    }
+    cout << "}\n";
+
+    if (remaining_deals < 0)
+    {
+        cout << "[GMC] remaining_deals < 0 -> return -1\n";
+        return -1;
+    }
+    else
+    {
+        for (int i = 0; i < (int)powers_required.size(); i++)
+        {
+            cout << endl;
+            cout << "[GMC] powers_required from GMND: {";
+            for (size_t j = 0; j < powers_required.size(); ++j)
+            {
+                cout << "(" << powers_required[j].first << "x, p=" << powers_required[j].second << ")";
+                if (j + 1 < powers_required.size())
+                    cout << ", ";
+            }
+            cout << "}\n";
+            cout << endl;
+            if (remaining_deals == 0)
+                break;
+            long long current_count = powers_required[i].first;
+            long long current_power = powers_required[i].second;
+
+            cout << "[GMC] loop i=" << i
+                 << " | (count=" << current_count << ", power=" << current_power << ")"
+                 << " | remaining_deals(before)=" << remaining_deals
+                 << " | min_cost(before)=" << min_cost << "\n";
+            if (current_power > 0)
+            {
+                if (3 * current_count <= remaining_deals)
+                {
+                    cout << "[GMC] branch: use WHOLE bucket (count=" << current_count
+                         << ") move from power " << current_power
+                         << " to " << (current_power - 1) << "\n";
+
+                    remaining_deals -= 3 * current_count;
+                    min_cost -= current_count * getCost(current_power);
+                    cout << "Cost to adjust: old:  " << current_count * getCost(current_power) << endl;
+                    cout << "Cost to adjust: new:  " << 3 * current_count * getCost(current_power - 1) << endl;
+                    min_cost += 3 * current_count * getCost(current_power - 1);
+
+                    cout << "[GMC] after update: remaining_deals=" << remaining_deals
+                         << ", min_cost=" << min_cost << "\n";
+                    powers_required.push_back({3 * current_count, current_power - 1});
+                }
+                else
+                {
+                    long long required = log(remaining_deals) / log(3.0);
+                    remaining_deals -= required;
+                    cout << "[GMC] branch: use PARTIAL bucket (needed=" << remaining_deals
+                         << " < count=" << current_count
+                         << ") move from power " << current_power
+                         << " to " << (current_power - 1) << " and BREAK\n";
+                    cout << "Cost to adjust: old:  " << pow(3, required) * getCost(current_power) << endl;
+                    if (3 * required >= remaining_deals)
+                    {
+                        min_cost -= pow(3, required) * getCost(current_power);
+                        cout << "Cost to adjust: new:  " << 3 * pow(3, required) * getCost(current_power - 1) << endl;
+                        min_cost += 3 * pow(3, required) * getCost(current_power - 1);
+
+                        cout << "[GMC] after update (pre-break): remaining_deals now 0, min_cost=" << min_cost << "\n";
+                    }
+
+                    break;
+                }
+            }
+        }
+
+        cout << "[GMC] RESULT min_cost=" << min_cost << "\n";
+        return min_cost;
+    }
+}
+
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        long long n, k;
+        cin >> n >> k;
+        cout << get_min_cost(n, k) << endl;
+    }
+    return 0;
+}
