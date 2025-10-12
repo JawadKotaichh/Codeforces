@@ -8,6 +8,9 @@
     "xutility": "cpp",
     "vector": "cpp",
     "utility": "cpp",
-    "ostream": "cpp"
+    "ostream": "cpp",
+    "valarray": "cpp",
+    "random": "cpp",
+    "limits": "cpp"
   }
 }

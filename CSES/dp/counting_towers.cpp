@@ -17,29 +17,36 @@
     1->mafsoul
 
 */
-
 #include <bits/stdc++.h>
 using namespace std;
 int main()
 {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
+    const long long MOD = 1e9 + 7;
     int t;
     cin >> t;
-    while (t--)
-    {
-        int n;
-        cin >> n;
-        long long MOD = 1e9 + 7;
 
-        vector<vector<int>> dp(n + 1, vector<int>(2, 0));
-        dp[1][0] = 1;
-        dp[1][1] = 1;
-        for (int i = 2; i <= n; i++)
-        {
-            dp[i][0] = (2 * dp[i - 1][0] + dp[i - 1][1]) % MOD;
-            dp[i][1] = (dp[i - 1][1] + 4 * dp[i - 1][1]) % MOD;
-        }
-        int ans = (dp[n][0] + dp[n][1]) % MOD;
-        cout << ans << endl;
+    vector<int> queries(t);
+    int maxn = 0;
+    for (int i = 0; i < t; i++)
+    {
+        cin >> queries[i];
+        maxn = max(maxn, queries[i]);
+    }
+
+    vector<vector<long long>> dp(maxn + 1, vector<long long>(2, 0));
+    dp[1][0] = 1;
+    dp[1][1] = 1;
+    for (int i = 2; i <= maxn; i++)
+    {
+        dp[i][0] = (2 * dp[i - 1][0] + dp[i - 1][1]) % MOD;
+        dp[i][1] = (dp[i - 1][0] + 4 * dp[i - 1][1]) % MOD;
+    }
+
+    for (int n : queries)
+    {
+        cout << (dp[n][0] + dp[n][1]) % MOD << '\n';
     }
 }
