@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "*.css": "tailwindcss",
+        "random": "cpp",
+        "ostream": "cpp",
+        "vector": "cpp",
+        "utility": "cpp",
+        "cmath": "cpp",
+        "xstring": "cpp",
+        "algorithm": "cpp"
+    }
+}
